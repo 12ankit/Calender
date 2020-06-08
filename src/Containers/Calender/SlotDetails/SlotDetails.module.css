@@ -1,8 +1,36 @@
-.wrapper {
+.open {
   border: 1px solid #bbb8e7;
+  background-color: #eeedf5;
   border-radius: 10px;
-  min-width: 110px;
-  min-height: 70px;
+  max-width: 90px;
+  min-height: 40px;
   font-size: 12px;
   padding: 12px;
+  color: #9588e3;
+}
+
+.blocked {
+  border: 1px solid #cfcfcf;
+  background-color: #ededed;
+  border-radius: 10px;
+  max-width: 90px;
+  min-height: 40px;
+  font-size: 12px;
+  padding: 12px;
+  color: #949292;
+}
+
+.scheduled {
+  border: 1px solid #04cc04;
+  background-color: #d6f9d6;
+  border-radius: 10px;
+  max-width: 110px;
+  min-height: 40px;
+  font-size: 12px;
+  padding: 12px;
+  color: #44b144;
+}
+
+.slot {
+  font-size: 10px;
 }

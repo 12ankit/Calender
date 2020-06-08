@@ -21,7 +21,11 @@
 }
 
 .close {
-  padding: 8px 10px 0px;
+  padding: 8px 10px;
   font-size: 14px;
   color: gray;
+}
+
+.children {
+  padding: 5px 10px;
 }
