@@ -31,8 +31,13 @@ class SlotDetails extends React.Component {
     const incomingRow = e.dataTransfer.getData("row");
     const incomingColumn = e.dataTransfer.getData("column");
 
-    dragHandler(Number(incomingRow), Number(incomingColumn), { status, name });
-    dragHandler(row, column, { status: incomingStatus, name: incomingName });
+    if (status !== "blocked") {
+      dragHandler(Number(incomingRow), Number(incomingColumn), {
+        status,
+        name,
+      });
+      dragHandler(row, column, { status: incomingStatus, name: incomingName });
+    }
   };
 
   onDragStart = (e) => {
