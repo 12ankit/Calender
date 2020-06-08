@@ -1,0 +1,8 @@
+.wrapper {
+  border: 1px solid #bbb8e7;
+  border-radius: 10px;
+  min-width: 110px;
+  min-height: 70px;
+  font-size: 12px;
+  padding: 12px;
+}
