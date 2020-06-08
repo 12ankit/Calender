@@ -9,6 +9,9 @@
   color: #9588e3;
   user-select: none;
 }
+.open:hover {
+  background-color: #bbb8e7;
+}
 
 .blocked {
   border: 1px solid #cfcfcf;
@@ -32,6 +35,9 @@
   padding: 12px;
   color: #44b144;
   user-select: none;
+}
+.scheduled:hover {
+  background-color: #04cc04;
 }
 
 .slot {
