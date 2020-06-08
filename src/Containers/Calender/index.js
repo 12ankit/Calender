@@ -47,6 +47,12 @@ class Calender extends React.Component {
     }
   }
 
+  slotDataHandler = (row, column, data) => {
+    const { slotData } = this.state;
+    slotData[row][column] = { ...slotData[row][column], ...data };
+    this.setState({ slotData });
+  };
+
   handleModalOpen = (row, column) => (data) => {
     this.setState({
       open: true,
@@ -84,6 +90,9 @@ class Calender extends React.Component {
         <td>
           <SlotDetails
             data={slotData[row][i]}
+            row={row}
+            column={i}
+            dragHandler={this.slotDataHandler}
             handleModalOpen={this.handleModalOpen(row, i)}
           />
         </td>
@@ -95,7 +104,10 @@ class Calender extends React.Component {
   render() {
     const { open, inputValue, selected } = this.state;
     return (
-      <div className={CalenderStyles.wrapper}>
+      <div
+        className={CalenderStyles.wrapper}
+        onDragOver={(e) => e.preventDefault()}
+      >
         <table className={CalenderStyles.table}>
           <th />
           {xAxis.map((item) => (
