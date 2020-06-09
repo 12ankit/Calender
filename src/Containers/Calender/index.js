@@ -1,8 +1,8 @@
 import React from "react";
 import CalenderStyles from "./Calender.module.css";
-import SlotDetails from "./SlotDetails";
-import Modal from "../../Components/Modal";
-import { xAxis, yAxis, days } from "./constants";
+import Table from "./Table";
+import TransitionModal from "./TransitionModal";
+import { xAxis, yAxis } from "./constants";
 
 const getData = (rowIndex, columnIndex, data) => {
   if (
@@ -29,7 +29,6 @@ class Calender extends React.Component {
       column: 0,
       status: "",
     },
-    inputValue: "",
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -57,91 +56,43 @@ class Calender extends React.Component {
     this.setState({
       open: true,
       selected: { row, column, status: data.status },
-      inputValue: data.name,
     });
   };
 
   handleModalClose = () => {
-    this.setState({ open: false, inputValue: "" });
+    this.setState({ open: false });
   };
 
-  handleInputChange = (event) => {
-    const value = event.target.value;
-    this.setState({ inputValue: value });
-  };
-
-  bookSlot = () => {
-    const { selected, inputValue, slotData } = this.state;
+  bookSlot = (text) => {
+    const { selected, slotData } = this.state;
     const { row, column } = selected;
     slotData[row][column] = {
       ...slotData[row][column],
-      name: inputValue,
+      name: text,
       status: "scheduled",
     };
 
     this.setState({ slotData: [...slotData] }, this.handleModalClose);
   };
 
-  renderSlotDetails = (row, timeData) => {
-    const { slotData } = this.state;
-    const comps = [];
-    for (let i = 0; i < days; i++) {
-      comps.push(
-        <td>
-          <SlotDetails
-            data={slotData[row][i]}
-            row={row}
-            column={i}
-            dragHandler={this.slotDataHandler}
-            handleModalOpen={this.handleModalOpen(row, i)}
-          />
-        </td>
-      );
-    }
-    return comps;
-  };
-
   render() {
-    const { open, inputValue, selected } = this.state;
+    const { open, selected, slotData } = this.state;
     return (
       <div
         className={CalenderStyles.wrapper}
         onDragOver={(e) => e.preventDefault()}
       >
-        <table className={CalenderStyles.table}>
-          <th />
-          {xAxis.map((item) => (
-            <th>
-              <div>{item.day}</div>
-              <div>{item.date}</div>
-            </th>
-          ))}
-          {yAxis.map((item, index) => (
-            <tr>
-              <td>{`${item.time} ${item.unit}`}</td>
-              {this.renderSlotDetails(index, item)}
-            </tr>
-          ))}
-        </table>
-        <Modal open={open} handleClose={this.handleModalClose}>
-          <div>
-            <input
-              type="name"
-              value={inputValue}
-              onChange={this.handleInputChange}
-            />
-          </div>
-          <div>
-            <div>
-              <button onClick={this.bookSlot}>
-                {selected.status !== "scheduled" ? "Schedule" : "Reschedule"}
-              </button>
-            </div>
-            <div>
-              <button onClick={this.handleModalClose}>Cancel</button>
-            </div>
-          </div>
-        </Modal>
+        <Table
+          slotData={slotData}
+          slotDataHandler={this.slotDataHandler}
+          handleModalOpen={this.handleModalOpen}
+        />
+        <TransitionModal
+          open={open}
+          handleClose={this.handleModalClose}
+          bookSlot={this.bookSlot}
+          isScheduled={selected.status !== "scheduled"}
+        />
       </div>
     );
   }
