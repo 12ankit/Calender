@@ -76,8 +76,15 @@ class Calender extends React.Component {
   };
 
   handleRepeat = (row) => (data) => {
+    const { slotData } = this.state;
     for (let columnIndex = 1; columnIndex < days - 1; columnIndex++) {
-      this.slotDataHandler(row, columnIndex, data);
+      const newData = slotData[row][columnIndex];
+
+      this.slotDataHandler(row, columnIndex, {
+        ...newData,
+        status: data.status,
+        name: data.name,
+      });
     }
     this.handleModalClose();
   };
