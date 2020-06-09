@@ -1,9 +1,18 @@
 import React from "react";
 import Modal from "../../../Components/Modal";
+import Scheduler from "./Scheduler";
+import Rescheduler from "./Rescheduler";
 
 class TransitionModal extends React.Component {
   state = {
     inputValue: "",
+    isRescheduling: false,
+  };
+
+  handleRescheduling = () => {
+    this.setState((prevState) => ({
+      isRescheduling: !prevState.isRescheduling,
+    }));
   };
 
   handleInputChange = (event) => {
@@ -13,31 +22,44 @@ class TransitionModal extends React.Component {
 
   handleClose = () => {
     const { handleClose } = this.props;
-    this.setState({ inputValue: "" }, handleClose);
+    const { isRescheduling } = this.state;
+    if (isRescheduling) {
+      this.handleInputChange({ target: { value: "" } });
+      this.handleRescheduling();
+    } else {
+      this.setState({ inputValue: "" }, handleClose);
+    }
+  };
+
+  bookSlot = () => {
+    const { bookSlot } = this.props;
+    const { isRescheduling, inputValue } = this.state;
+    if (isRescheduling) {
+      this.handleRescheduling();
+    }
+    bookSlot(inputValue);
   };
 
   render() {
-    const { open, bookSlot, isScheduled } = this.props;
-    const { inputValue } = this.state;
+    const { open, isScheduled, data } = this.props;
+    const { inputValue, isRescheduling } = this.state;
     return (
       <Modal open={open} handleClose={this.handleClose}>
-        <div>
-          <input
-            type="name"
-            value={inputValue}
-            onChange={this.handleInputChange}
+        {isScheduled && !isRescheduling ? (
+          <Rescheduler
+            handleRescheduling={this.handleRescheduling}
+            data={data}
+            handleClose={this.handleClose}
+            handleInputChange={this.handleInputChange}
           />
-        </div>
-        <div>
-          <div>
-            <button onClick={() => bookSlot(inputValue)}>
-              {isScheduled ? "Schedule" : "Reschedule"}
-            </button>
-          </div>
-          <div>
-            <button onClick={this.handleClose}>Cancel</button>
-          </div>
-        </div>
+        ) : (
+          <Scheduler
+            bookSlot={this.bookSlot}
+            inputValue={inputValue}
+            handleInputChange={this.handleInputChange}
+            handleClose={this.handleClose}
+          />
+        )}
       </Modal>
     );
   }

@@ -2,7 +2,7 @@
   border: 1px solid #bbb8e7;
   background-color: #eeedf5;
   border-radius: 10px;
-  max-width: 90px;
+  min-width: 90px;
   min-height: 40px;
   font-size: 12px;
   padding: 12px;
@@ -17,7 +17,7 @@
   border: 1px solid #cfcfcf;
   background-color: #ededed;
   border-radius: 10px;
-  max-width: 90px;
+  min-width: 90px;
   min-height: 40px;
   font-size: 12px;
   padding: 12px;
@@ -29,7 +29,7 @@
   border: 1px solid #04cc04;
   background-color: #d6f9d6;
   border-radius: 10px;
-  max-width: 110px;
+  min-width: 90px;
   min-height: 40px;
   font-size: 12px;
   padding: 12px;

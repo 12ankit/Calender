@@ -89,9 +89,10 @@ class Calender extends React.Component {
         />
         <TransitionModal
           open={open}
+          data={slotData[selected.row][selected.column]}
           handleClose={this.handleModalClose}
           bookSlot={this.bookSlot}
-          isScheduled={selected.status !== "scheduled"}
+          isScheduled={selected.status === "scheduled"}
         />
       </div>
     );

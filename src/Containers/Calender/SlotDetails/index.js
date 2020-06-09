@@ -65,7 +65,9 @@ class SlotDetails extends React.Component {
           className={SlotDetailsStyles.slot}
         >{`${data.time} ${data.unit}`}</div>
         {data.status !== "scheduled" && <div>{status}</div>}
-        <div>{data.name}</div>
+        <div>
+          <span>{data.name}</span>
+        </div>
       </div>
     );
   }
