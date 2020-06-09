@@ -6,6 +6,7 @@ import Rescheduler from "./Rescheduler";
 class TransitionModal extends React.Component {
   state = {
     inputValue: "",
+    err: false,
     isRescheduling: false,
   };
 
@@ -16,7 +17,11 @@ class TransitionModal extends React.Component {
   };
 
   handleInputChange = (event) => {
+    const { err } = this.state;
     const value = event.target.value;
+    if (value && err) {
+      this.setState({ err: false });
+    }
     this.setState({ inputValue: value });
   };
 
@@ -34,19 +39,24 @@ class TransitionModal extends React.Component {
   bookSlot = () => {
     const { bookSlot } = this.props;
     const { isRescheduling, inputValue } = this.state;
-    if (isRescheduling) {
+    if (isRescheduling && inputValue) {
       this.handleRescheduling();
     }
-    bookSlot(inputValue);
+    if (!inputValue) {
+      this.setState({ err: true });
+    } else {
+      bookSlot(inputValue);
+    }
   };
 
   render() {
-    const { open, isScheduled, data } = this.props;
-    const { inputValue, isRescheduling } = this.state;
+    const { open, isScheduled, data, handleRepeat } = this.props;
+    const { inputValue, isRescheduling, err } = this.state;
     return (
       <Modal open={open} handleClose={this.handleClose}>
         {isScheduled && !isRescheduling ? (
           <Rescheduler
+            handleRepeat={handleRepeat}
             handleRescheduling={this.handleRescheduling}
             data={data}
             handleClose={this.handleClose}
@@ -54,6 +64,7 @@ class TransitionModal extends React.Component {
           />
         ) : (
           <Scheduler
+            err={err}
             bookSlot={this.bookSlot}
             inputValue={inputValue}
             handleInputChange={this.handleInputChange}

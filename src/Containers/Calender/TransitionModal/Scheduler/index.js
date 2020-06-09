@@ -6,6 +6,7 @@ const Scheduler = ({
   handleInputChange,
   handleClose,
   inputValue,
+  err,
 }) => (
   <div className={SchedulerStyles.wrapper}>
     <div className={SchedulerStyles.input}>
@@ -15,6 +16,7 @@ const Scheduler = ({
         placeholder="Book For"
         onChange={handleInputChange}
       />
+      {err && <div className={SchedulerStyles.err}>*Required</div>}
     </div>
     <div className={SchedulerStyles.actions}>
       <div

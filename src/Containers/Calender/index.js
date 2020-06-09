@@ -2,7 +2,7 @@ import React from "react";
 import CalenderStyles from "./Calender.module.css";
 import Table from "./Table";
 import TransitionModal from "./TransitionModal";
-import { xAxis, yAxis } from "./constants";
+import { xAxis, yAxis, days } from "./constants";
 
 const getData = (rowIndex, columnIndex, data) => {
   if (
@@ -75,6 +75,13 @@ class Calender extends React.Component {
     this.setState({ slotData: [...slotData] }, this.handleModalClose);
   };
 
+  handleRepeat = (row) => (data) => {
+    for (let columnIndex = 1; columnIndex < days - 1; columnIndex++) {
+      this.slotDataHandler(row, columnIndex, data);
+    }
+    this.handleModalClose();
+  };
+
   render() {
     const { open, selected, slotData } = this.state;
     return (
@@ -89,6 +96,7 @@ class Calender extends React.Component {
         />
         <TransitionModal
           open={open}
+          handleRepeat={this.handleRepeat(selected.row)}
           data={slotData[selected.row][selected.column]}
           handleClose={this.handleModalClose}
           bookSlot={this.bookSlot}

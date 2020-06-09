@@ -16,6 +16,13 @@
   font-size: 14px;
 }
 
+.repeats{
+  color: #04cc04;
+  font-size: 14px;
+  margin-top: 25px;
+  margin-left: 11px;
+}
+
 .actions {
   display: flex;
   justify-content: space-between;

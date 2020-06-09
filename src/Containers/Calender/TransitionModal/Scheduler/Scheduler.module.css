@@ -12,6 +12,12 @@
   border-radius: 4px;
 }
 
+.err {
+  color: red;
+  font-size: 10px;
+  margin-left: 13px;
+}
+
 .actions {
   display: flex;
   justify-content: space-between;

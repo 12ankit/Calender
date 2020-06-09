@@ -6,12 +6,19 @@ const Rescheduler = ({
   handleClose,
   handleInputChange,
   handleRescheduling,
+  handleRepeat,
 }) => (
   <div className={ReschedulerStyles.wrapper}>
     <div className={ReschedulerStyles.name}>{data.name}</div>
     <div
       className={ReschedulerStyles.details}
     >{`${data.day}, ${data.month} ${data.date} at ${data.time}:00${data.unit}`}</div>
+    <div
+      className={ReschedulerStyles.repeats}
+      onClick={() => handleRepeat(data)}
+    >
+      Repeats everyday
+    </div>
     <div className={ReschedulerStyles.actions}>
       <div
         className={`${ReschedulerStyles.button} ${ReschedulerStyles.ok}`}
