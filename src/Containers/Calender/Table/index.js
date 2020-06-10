@@ -29,7 +29,7 @@ const Table = ({ slotData, slotDataHandler, handleModalOpen }) => (
       }
       return (
         <tr>
-          <td>{`${item.time} ${item.unit}`}</td>
+          <td className={TableStyles.yAxis}>{`${item.time} ${item.unit}`}</td>
           {rowComps}
         </tr>
       );

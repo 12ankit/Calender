@@ -38,7 +38,7 @@ class Calender extends React.Component {
         slotData[rowIndex] = [];
         xAxis.forEach((columnData, columnIndex) => {
           const data = { ...rowData, ...columnData };
-          if (rowIndex === 2) {
+          if (rowIndex === 2 && columnIndex !== 0 && columnIndex !== 6) {
             data.name = "Ankit";
             data.status = "scheduled";
           }
