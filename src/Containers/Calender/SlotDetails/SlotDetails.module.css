@@ -1,6 +1,6 @@
 .open {
-  border: 1px solid #bbb8e7;
-  background-color: #eeedf5;
+  border: 1px solid #cfd1f5;
+  background-color: #ecedfd;
   border-radius: 10px;
   min-width: 90px;
   min-height: 40px;
@@ -10,34 +10,34 @@
   user-select: none;
 }
 .open:hover {
-  background-color: #bbb8e7;
+  background-color: #cfd1f5;
 }
 
 .blocked {
-  border: 1px solid #cfcfcf;
-  background-color: #ededed;
+  border: 1px solid #c0bebc;
+  background-color: #f6f2ef;
   border-radius: 10px;
   min-width: 90px;
   min-height: 40px;
   font-size: 12px;
   padding: 12px;
-  color: #949292;
+  color: #c0bebc;
   user-select: none;
 }
 
 .scheduled {
-  border: 1px solid #04cc04;
-  background-color: #d6f9d6;
+  border: 1px solid #61dbb7;
+  background-color: #61dbb7;
   border-radius: 10px;
   min-width: 90px;
   min-height: 40px;
   font-size: 12px;
   padding: 12px;
-  color: #44b144;
+  color: #ffffff;
   user-select: none;
 }
 .scheduled:hover {
-  background-color: #04cc04;
+  background-color: #4ab695;
 }
 
 .slot {

@@ -38,6 +38,22 @@ class Calender extends React.Component {
         slotData[rowIndex] = [];
         xAxis.forEach((columnData, columnIndex) => {
           const data = { ...rowData, ...columnData };
+          if (rowIndex === 2) {
+            data.name = "Ankit";
+            data.status = "scheduled";
+          }
+          if (rowIndex === 1 && columnIndex === 4) {
+            data.name = "Rohan";
+            data.status = "scheduled";
+          }
+          if (rowIndex === 3 && columnIndex === 1) {
+            data.name = "Neha";
+            data.status = "scheduled";
+          }
+          if (rowIndex === 4 && columnIndex === 3) {
+            data.name = "Manish";
+            data.status = "scheduled";
+          }
           const modifiedData = getData(rowIndex, columnIndex, data);
           slotData[rowIndex][columnIndex] = modifiedData;
         });

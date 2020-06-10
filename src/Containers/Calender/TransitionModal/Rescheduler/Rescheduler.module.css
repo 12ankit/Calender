@@ -17,7 +17,7 @@
 }
 
 .repeats{
-  color: #04cc04;
+  color: #83e7d2;
   font-size: 14px;
   margin-top: 25px;
   margin-left: 11px;
@@ -39,12 +39,13 @@
   text-align: center;
   padding: 10px 0px;
   font-size: 14px;
+  font-weight: bold;
 }
 
 .ok {
-  background-color: yellow;
+  background-color: #f5ca5c;
 }
 
 .cancel {
-  background-color: red;
+  background-color: #ed3e3e;
 }
